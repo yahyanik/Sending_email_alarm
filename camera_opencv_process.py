@@ -4,7 +4,7 @@ from base_camera import BaseCamera
 
 
 class Camera(BaseCamera):
-    video_source = 0
+    video_source = "./WIN_20181102_16_16_56_Pro.mp4"
 
     @staticmethod
     def frames():

@@ -6,8 +6,8 @@ import time
 
 fgbg = cv2.createBackgroundSubtractorMOG2()
 
-video_source = 0
-tersh = 300
+video_source = "./WIN_20181102_16_16_56_Pro.mp4"
+tersh = 500
 
 
 
@@ -32,7 +32,7 @@ while True:
     if flag_to_send_email:
         print 'emil sent!'
         email_send_request.RequestEmail.request()
-        time.sleep(60*30)
+        time.sleep(60*10)
 
 
 
