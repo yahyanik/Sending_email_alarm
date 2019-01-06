@@ -1,29 +1,13 @@
 import cv2
 import imutils
+import email_send_request
+import time
 
 
 fgbg = cv2.createBackgroundSubtractorMOG2()
 
 video_source = 0
 tersh = 300
-
-def center(self, box):
-
-    p1 = int(box[0]) + int(box[2]) / 2
-    p2 = int(box[1]) + int(box[3]) / 2
-
-    return [p1, p2]
-
-def AllCenter(self, cent):
-
-    if len(cent[0]) != 0:
-        p1 = sum(cent[0]) / len(cent[0])
-        p2 = sum(cent[1]) / len(cent[1])
-    else:
-        p1 = None
-        p2 = None
-
-    return (p1, p2)
 
 
 
@@ -46,6 +30,9 @@ while True:
 
 
     if flag_to_send_email:
+        print 'emil sent!'
+        email_send_request.RequestEmail.request()
+        time.sleep(60*30)
 
 
 
