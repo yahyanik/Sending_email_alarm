@@ -1,20 +1,20 @@
 import cv2
-import time
+import imutils
 from base_camera import BaseCamera
 
 
-import numpy as np
-import argparse
-import tree
-from __builtin__ import enumerate
-from imutils.video import FPS
-import imutils
-import datetime
+class Camera(BaseCamera):
+    video_source = 0
 
+    @staticmethod
+    def frames():
+        camera = cv2.VideoCapture(Camera.video_source)
+        if not camera.isOpened():
+            raise RuntimeError('Could not start camera.')
 
-#######################################################################################################################################
-
-            yield (information_to_send_dic , cv2.imencode('.jpg', frame1)[1].tobytes())
-
-
-
+        while True:
+            # read current frame
+            _, img = camera.read()
+            frame1 = imutils.resize(img, width=min((600, img.shape[1])))
+            # encode as a jpeg image and return it
+            yield cv2.imencode('.jpg', frame1)[1].tobytes()
