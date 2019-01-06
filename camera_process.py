@@ -5,6 +5,7 @@ import imutils
 fgbg = cv2.createBackgroundSubtractorMOG2()
 
 video_source = 0
+tersh = 300
 
 def center(self, box):
 
@@ -30,6 +31,7 @@ camera = cv2.VideoCapture(video_source)
 if not camera.isOpened():
     raise RuntimeError('Could not start camera.')
 while True:
+    flag_to_send_email = False
             # read current frame
     _, img = camera.read()
     frame1 = imutils.resize(img, width=min((600, img.shape[1])))
@@ -39,12 +41,14 @@ while True:
     _, contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     for c in contours:
         (x, y, w, h) = cv2.boundingRect(c)
-        k1 = Camera.center((x, y, w, h))[0]
-        k2 = Camera.center((x, y, w, h))[1]
-        if box[0] <= k1 < box[1] and box[2] <= k2 < box[3]:
-            cent[0].append(k1)
-            cent[1].append(k2)
-    get = self.AllCenter(cent)
+        if (w*h) >= tersh:
+            flag_to_send_email = True
+
+
+    if flag_to_send_email:
+
+
+
 #######################################################################################################################################
 
 
